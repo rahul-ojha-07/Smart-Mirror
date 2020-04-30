@@ -3,8 +3,10 @@ This is the repository for our Final Year Project.
 
 
 ## To Set name and email for commit 
+`
 >__git config --global user.name "[name]("Rahul Ojha")"__
 >__git config --global user.email "[email](example@gmail.com)"__
+`
 # Add, Commit and Push
 ## Adding a file or Some changes to local git 
 * Adding 1 file
