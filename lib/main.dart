@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:smartMirror/screens/authetication/login_page.dart';
 import 'package:smartMirror/screens/authetication/signup_page.dart';
 import 'package:smartMirror/screens/home/home_page.dart';
+import 'package:smartMirror/screens/loading_screen.dart';
 import 'package:smartMirror/screens/wrapper.dart';
 import 'package:provider/provider.dart';
 import 'package:smartMirror/services/auth.dart';
@@ -33,7 +34,8 @@ class MyApp extends StatelessWidget {
           '/login': (context) => LoginScreen(),
           '/home': (context) => Home(),
           '/signup': (context) => SignupScreen(),
-          '/wrapper': (context) => Wrapper()
+          '/wrapper': (context) => Wrapper(),
+          '/loading':(context)=>Loading(),
         },
         initialRoute: '/wrapper',
       ),

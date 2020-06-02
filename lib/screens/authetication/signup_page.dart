@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smartMirror/screens/loading_screen.dart';
 import 'package:smartMirror/services/auth.dart';
 import 'package:smartMirror/utils/constants.dart';
 import 'package:flutter/services.dart';
@@ -13,6 +14,7 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   bool autoValidate = false;
+  bool loading = false;
   final _signUpKey = GlobalKey<FormState>();
   AuthService _auth = AuthService();
 
@@ -383,7 +385,7 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
-  String error;
+  String error = '';
 
   Widget _buildRegisterBtn() {
     return Container(
@@ -391,12 +393,19 @@ class _SignupScreenState extends State<SignupScreen> {
       width: double.infinity,
       child: RaisedButton(
         elevation: 5.0,
-        onPressed: () {
+        onPressed: () async{
           if (_signUpKey.currentState.validate()) {
-            dynamic result = _auth.signUpUser(person.email, person.password);
+            setState(() {
+            
+              loading = true;
+            });
+            dynamic result = await _auth.signUpUser(person.email, person.password);
+            print(result);
+            
             if (result == null) {
               setState(() {
                 error = 'please supply a valid email';
+                loading = false;
               });
             }
             print('${person.name}  ${person.email}  ${person.password}');
@@ -457,7 +466,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return loading ? Loading() : Scaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.dark,
         child: GestureDetector(

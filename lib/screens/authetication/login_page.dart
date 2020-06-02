@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:smartMirror/screens/loading_screen.dart';
 import 'package:smartMirror/services/auth.dart';
 import 'package:smartMirror/utils/constants.dart';
 
@@ -11,8 +12,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
-
+  bool loading = false;
 
   final _loginFormKey = GlobalKey<FormState>();
 
@@ -20,7 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   String mail;
   String psw;
-  
+
   Widget _buildEmailTF() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -201,7 +201,9 @@ class _LoginScreenState extends State<LoginScreen> {
       ],
     );
   }
+
   bool autoValidate = false;
+  String error = '';
   Widget _buildLoginBtn() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 25.0),
@@ -209,19 +211,24 @@ class _LoginScreenState extends State<LoginScreen> {
       child: RaisedButton(
         elevation: 5.0,
         onPressed: () async {
-
           if (_loginFormKey.currentState.validate()) {
+            setState(() {
+              loading = true;
+            });
             dynamic result = await _auth.signInUser(mail, psw);
 
             if (result == null) {
               print("Error sign in");
+              setState(() {
+                error = "Email/Password is Wrong";
+                loading = false;
+              });
             } else {
               print("signed in");
               print(result);
               // Navigator.replace(context, oldRoute: , newRoute: null)
               // Navigator.pushNamed(context, '/menu');
             }
-
 
             print("$mail and $psw");
           } else {
@@ -252,7 +259,6 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _buildSignupBtn() {
     return GestureDetector(
       onTap: () {
-        
         widget.toggleView();
       },
       child: RichText(
@@ -282,77 +288,91 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.dark,
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Stack(
-            children: <Widget>[
-              Container(
-                height: double.infinity,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    // colors: [
-                    //   Color(0xFF73AEF5),
-                    //   Color(0xFF61A4F1),
-                    //   Color(0xFF478DE0),
-                    //   Color(0xFF398AE5),
-                    // ],
-                    colors: [
-                      Colors.grey[500],
-                      Colors.grey[600],
-                      Colors.grey[700],
-                      Colors.grey[800],
-                    ],
-                    stops: [0.1, 0.4, 0.7, 0.9],
-                  ),
-                ),
-              ),
-              Container(
-                height: double.infinity,
-                child: SingleChildScrollView(
-                  physics: AlwaysScrollableScrollPhysics(),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 40.0,
-                    vertical: 120.0,
-                  ),
-                  child: Form(
-                    key: _loginFormKey,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        Text(
-                          'Sign In',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: 'OpenSans',
-                            fontSize: 30.0,
-                            fontWeight: FontWeight.bold,
+    return loading
+        ? Loading()
+        : Scaffold(
+            body: AnnotatedRegion<SystemUiOverlayStyle>(
+              value: SystemUiOverlayStyle.dark,
+              child: GestureDetector(
+                onTap: () => FocusScope.of(context).unfocus(),
+                child: Stack(
+                  children: <Widget>[
+                    Container(
+                      height: double.infinity,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          // colors: [
+                          //   Color(0xFF73AEF5),
+                          //   Color(0xFF61A4F1),
+                          //   Color(0xFF478DE0),
+                          //   Color(0xFF398AE5),
+                          // ],
+                          colors: [
+                            Colors.grey[500],
+                            Colors.grey[600],
+                            Colors.grey[700],
+                            Colors.grey[800],
+                          ],
+                          stops: [0.1, 0.4, 0.7, 0.9],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: double.infinity,
+                      child: SingleChildScrollView(
+                        physics: AlwaysScrollableScrollPhysics(),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 40.0,
+                          vertical: 120.0,
+                        ),
+                        child: Form(
+                          key: _loginFormKey,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: <Widget>[
+                              Text(
+                                'Sign In',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'OpenSans',
+                                  fontSize: 30.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(height: 30.0),
+                              _buildEmailTF(),
+                              SizedBox(height: 30.0),
+                              _buildPasswordTF(),
+                              SizedBox(height: 5.0),
+                              Center(
+                                child: Text(
+                                  error,
+                                  style: TextStyle(
+                                    color: Colors.red,
+                                    fontSize: 20.0,
+                                  ),
+                                ),
+                              ),
+                              // SizedBox(height: 10.0),
+                              _buildLoginBtn(),
+                              SizedBox(height: 20.0),
+                              _buildSignupBtn(),
+
+                             
+                            ],
                           ),
                         ),
-                        SizedBox(height: 30.0),
-                        _buildEmailTF(),
-                        SizedBox(height: 30.0),
-                        _buildPasswordTF(),
-                        SizedBox(height: 20.0),
-                        _buildLoginBtn(),
-                        SizedBox(height: 20.0),
-                        _buildSignupBtn(),
-                      ],
-                    ),
-                  ),
+                      ),
+                    )
+                  ],
                 ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
+              ),
+            ),
+          );
   }
 }
 

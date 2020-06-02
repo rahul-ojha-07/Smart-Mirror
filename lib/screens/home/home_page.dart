@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smartMirror/services/auth.dart';
+import 'dart:async';
 
 class Home extends StatefulWidget {
   @override
@@ -48,7 +49,6 @@ class _MenuState extends State<Home> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-
               child: RaisedButton.icon(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
@@ -108,8 +108,11 @@ class _MenuState extends State<Home> {
                 color: !status ? Colors.red[900] : Colors.green[900],
                 label: Text("ON/OFF"),
                 onPressed: () {
-                  setState(() {
-                    status = !status;
+                  // sleep2();
+                  Future.delayed(const Duration(seconds: 1), () {
+                    setState(() {
+                      status = !status;
+                    });
                   });
                 },
               ),
