@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smartMirror/services/auth.dart';
 import 'package:smartMirror/utils/constants.dart';
 import 'package:flutter/services.dart';
 import 'package:smartMirror/utils/person.dart';
@@ -13,6 +14,7 @@ class SignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<SignupScreen> {
   bool autoValidate = false;
   final _signUpKey = GlobalKey<FormState>();
+  AuthService _auth = AuthService();
 
   Person person = Person();
 
@@ -381,6 +383,8 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
+  String error;
+
   Widget _buildRegisterBtn() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 25.0),
@@ -388,9 +392,15 @@ class _SignupScreenState extends State<SignupScreen> {
       child: RaisedButton(
         elevation: 5.0,
         onPressed: () {
-          if (_signUpKey.currentState.validate()){
+          if (_signUpKey.currentState.validate()) {
+            dynamic result = _auth.signUpUser(person.email, person.password);
+            if (result == null) {
+              setState(() {
+                error = 'please supply a valid email';
+              });
+            }
             print('${person.name}  ${person.email}  ${person.password}');
-          }else {
+          } else {
             setState(() {
               autoValidate = true;
             });
@@ -518,6 +528,13 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                         _buildRegisterBtn(),
                         _buildSigninBtn(),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        Text(
+                          error,
+                          style: TextStyle(color: Colors.red),
+                        ),
                       ],
                     ),
                   ),
