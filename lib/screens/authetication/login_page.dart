@@ -4,11 +4,16 @@ import 'package:smartMirror/services/auth.dart';
 import 'package:smartMirror/utils/constants.dart';
 
 class LoginScreen extends StatefulWidget {
+  final Function toggleView;
+  LoginScreen({this.toggleView});
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
+
+
   final _loginFormKey = GlobalKey<FormState>();
 
   final AuthService _auth = AuthService();
@@ -214,7 +219,7 @@ class _LoginScreenState extends State<LoginScreen> {
               print("signed in");
               print(result);
               // Navigator.replace(context, oldRoute: , newRoute: null)
-              Navigator.pushNamed(context, '/menu');
+              // Navigator.pushNamed(context, '/menu');
             }
 
 
@@ -247,7 +252,8 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _buildSignupBtn() {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/signup');
+        
+        widget.toggleView();
       },
       child: RichText(
         text: TextSpan(

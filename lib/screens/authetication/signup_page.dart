@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:smartMirror/utils/person.dart';
 
 class SignupScreen extends StatefulWidget {
+  final Function toggleView;
+  SignupScreen({this.toggleView});
   @override
   _SignupScreenState createState() => _SignupScreenState();
 }
@@ -416,7 +418,7 @@ class _SignupScreenState extends State<SignupScreen> {
   Widget _buildSigninBtn() {
     return GestureDetector(
       onTap: () {
-        Navigator.pop(context);
+        widget.toggleView();
       },
       child: RichText(
         text: TextSpan(
