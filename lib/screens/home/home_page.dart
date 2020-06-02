@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:smartMirror/services/auth.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -9,6 +10,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
 
 
+  final AuthService _auth = AuthService();
 
 
   @override
@@ -27,18 +29,20 @@ class _HomeState extends State<Home> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             RaisedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/login');
-              },
-              child: Text("Login Page"),
-            ),
-            RaisedButton(
               // color: Colors.green[400],
               elevation: 0,
               onPressed: () {
                 Navigator.pushNamed(context, '/menu');
               },
               child: Text("Menu Page"),
+            ),
+            RaisedButton(
+              // color: Colors.green[400],
+              elevation: 0,
+              onPressed: () async {
+                await _auth.signOut();
+              },
+              child: Text("Log out"),
             ),
           ],
         ),

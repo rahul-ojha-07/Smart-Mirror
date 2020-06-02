@@ -1,21 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:smartMirror/pages/home_page.dart';
-import 'package:smartMirror/pages/login_page.dart';
-import 'package:smartMirror/pages/menu_page.dart';
-import 'package:smartMirror/pages/signup_page.dart';
+import 'package:smartMirror/screens/wrapper.dart';
+import 'package:provider/provider.dart';
+import 'package:smartMirror/services/auth.dart';
+import 'package:smartMirror/models/user.dart';
 
-void main() {
-  runApp(
-    MaterialApp(
-      initialRoute: '/home',
-      routes: {
-        '/login': (context) => LoginScreen(),
-        '/home': (context) => Home(),
-        '/menu': (context) => Menu(),
-        '/signup': (context) => SignupScreen(),
-      },
-    ),
-  );
+// void main() {
+//   runApp(
+//     MaterialApp(
+//       initialRoute: '/home',
+//       routes: {
+//         '/login': (context) => LoginScreen(),
+//         '/home': (context) => Home(),
+//         '/menu': (context) => Menu(),
+//         '/signup': (context) => SignupScreen(),
+//       },
+//     ),
+//   );
+// }
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return StreamProvider<User>.value(
+      value: AuthService().user,
+      child: MaterialApp(
+        home: Wrapper(),
+      ),
+    );
+  }
 }
 
 /****
@@ -24,7 +38,6 @@ void main() {
  * news 
  * 
  */
-
 
 // firease_auth
 // cloud_firestore
