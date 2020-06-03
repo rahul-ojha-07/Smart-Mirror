@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:smartMirror/models/user.dart';
 import 'package:smartMirror/screens/loading_screen.dart';
 import 'package:smartMirror/services/auth.dart';
 import 'package:smartMirror/utils/constants.dart';
+import 'package:smartMirror/utils/user_id.dart';
 
 class LoginScreen extends StatefulWidget {
   final Function toggleView;
@@ -220,9 +222,11 @@ class _LoginScreenState extends State<LoginScreen> {
               });
             } else {
               print("signed in");
-              print(result);
-              // Navigator.replace(context, oldRoute: , newRoute: null)
-              // Navigator.pushNamed(context, '/menu');
+              UserId.uid = result.uid;
+              print(result.uid);
+
+              print(UserId.uid);
+              
             }
 
             print("$mail and $psw");

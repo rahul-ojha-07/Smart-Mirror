@@ -3,7 +3,7 @@ import 'package:smartMirror/screens/loading_screen.dart';
 import 'package:smartMirror/services/auth.dart';
 import 'package:smartMirror/utils/constants.dart';
 import 'package:flutter/services.dart';
-
+import 'package:smartMirror/utils/user_id.dart';
 
 class SignupScreen extends StatefulWidget {
   final Function toggleView;
@@ -396,15 +396,18 @@ class _SignupScreenState extends State<SignupScreen> {
       width: double.infinity,
       child: RaisedButton(
         elevation: 5.0,
-        onPressed: () async{
+        onPressed: () async {
           if (_signUpKey.currentState.validate()) {
             setState(() {
-            
               loading = true;
             });
-            dynamic result = await _auth.signUpUser(name,email,password);
-            print(result);
+            dynamic result = await _auth.signUpUser(name, email, password);
+            UserId.uid = result.uid;
+              print(result.uid);
+
+              print(UserId.uid);
             
+
             if (result == null) {
               setState(() {
                 error = 'please supply a valid email';
@@ -469,93 +472,95 @@ class _SignupScreenState extends State<SignupScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return loading ? Loading() : Scaffold(
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.dark,
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Stack(
-            children: <Widget>[
-              Container(
-                height: double.infinity,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    // colors: [
-                    //   Color(0xFF73AEF5),
-                    //   Color(0xFF61A4F1),
-                    //   Color(0xFF478DE0),
-                    //   Color(0xFF398AE5),
-                    // ],
-                    colors: [
-                      Colors.grey[500],
-                      Colors.grey[600],
-                      Colors.grey[700],
-                      Colors.grey[800],
-                    ],
-                    stops: [0.1, 0.4, 0.7, 0.9],
-                  ),
-                ),
-              ),
-              Container(
-                height: double.infinity,
-                child: SingleChildScrollView(
-                  physics: AlwaysScrollableScrollPhysics(),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 40.0,
-                    vertical: 40.0,
-                  ),
-                  child: Form(
-                    key: _signUpKey,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Sign Up',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: 'OpenSans',
-                            fontSize: 30.0,
-                            fontWeight: FontWeight.bold,
+    return loading
+        ? Loading()
+        : Scaffold(
+            body: AnnotatedRegion<SystemUiOverlayStyle>(
+              value: SystemUiOverlayStyle.dark,
+              child: GestureDetector(
+                onTap: () => FocusScope.of(context).unfocus(),
+                child: Stack(
+                  children: <Widget>[
+                    Container(
+                      height: double.infinity,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          // colors: [
+                          //   Color(0xFF73AEF5),
+                          //   Color(0xFF61A4F1),
+                          //   Color(0xFF478DE0),
+                          //   Color(0xFF398AE5),
+                          // ],
+                          colors: [
+                            Colors.grey[500],
+                            Colors.grey[600],
+                            Colors.grey[700],
+                            Colors.grey[800],
+                          ],
+                          stops: [0.1, 0.4, 0.7, 0.9],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: double.infinity,
+                      child: SingleChildScrollView(
+                        physics: AlwaysScrollableScrollPhysics(),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 40.0,
+                          vertical: 40.0,
+                        ),
+                        child: Form(
+                          key: _signUpKey,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                'Sign Up',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'OpenSans',
+                                  fontSize: 30.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(height: 30.0),
+                              _buildNameTF(),
+                              SizedBox(
+                                height: 10.0,
+                              ),
+                              _buildEmailTF(),
+                              SizedBox(
+                                height: 10.0,
+                              ),
+                              _buildPasswordTF(),
+                              SizedBox(
+                                height: 10.0,
+                              ),
+                              _buildConfirmPasswordTF(),
+                              SizedBox(
+                                height: 10.0,
+                              ),
+                              _buildRegisterBtn(),
+                              _buildSigninBtn(),
+                              SizedBox(
+                                height: 10.0,
+                              ),
+                              Text(
+                                error,
+                                style: TextStyle(color: Colors.red),
+                              ),
+                            ],
                           ),
                         ),
-                        SizedBox(height: 30.0),
-                        _buildNameTF(),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        _buildEmailTF(),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        _buildPasswordTF(),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        _buildConfirmPasswordTF(),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        _buildRegisterBtn(),
-                        _buildSigninBtn(),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        Text(
-                          error,
-                          style: TextStyle(color: Colors.red),
-                        ),
-                      ],
-                    ),
-                  ),
+                      ),
+                    )
+                  ],
                 ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
+              ),
+            ),
+          );
   }
 }
