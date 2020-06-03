@@ -3,7 +3,7 @@ import 'package:smartMirror/screens/loading_screen.dart';
 import 'package:smartMirror/services/auth.dart';
 import 'package:smartMirror/utils/constants.dart';
 import 'package:flutter/services.dart';
-import 'package:smartMirror/utils/person.dart';
+
 
 class SignupScreen extends StatefulWidget {
   final Function toggleView;
@@ -18,7 +18,10 @@ class _SignupScreenState extends State<SignupScreen> {
   final _signUpKey = GlobalKey<FormState>();
   AuthService _auth = AuthService();
 
-  Person person = Person();
+  // Person person = Person();
+  String email;
+  String password;
+  String name;
 
   Widget _buildNameTF() {
     return Column(
@@ -36,7 +39,7 @@ class _SignupScreenState extends State<SignupScreen> {
             if (name.isEmpty) {
               return "Name Can Not be empty!";
             } else {
-              person.name = name;
+              name = name;
               return null;
             }
           },
@@ -120,7 +123,7 @@ class _SignupScreenState extends State<SignupScreen> {
             if (email.isEmpty) {
               return "Email Can Not be empty!";
             } else {
-              person.email = email;
+              email = email;
               return null;
             }
           },
@@ -209,7 +212,7 @@ class _SignupScreenState extends State<SignupScreen> {
             } else if (psw.length < 6) {
               return "Password length must be greater than 6 characters";
             } else {
-              person.password = psw;
+              password = psw;
               return null;
             }
           },
@@ -305,7 +308,7 @@ class _SignupScreenState extends State<SignupScreen> {
           validator: (psw) {
             if (psw.isEmpty) {
               return "this field can not be empty";
-            } else if (psw != person.password) {
+            } else if (psw != password) {
               return "Password do not match";
             } else {
               return null;
@@ -399,7 +402,7 @@ class _SignupScreenState extends State<SignupScreen> {
             
               loading = true;
             });
-            dynamic result = await _auth.signUpUser(person.email, person.password);
+            dynamic result = await _auth.signUpUser(name,email,password);
             print(result);
             
             if (result == null) {
@@ -408,7 +411,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 loading = false;
               });
             }
-            print('${person.name}  ${person.email}  ${person.password}');
+            print('$name  $email  $password');
           } else {
             setState(() {
               autoValidate = true;

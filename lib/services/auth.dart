@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:smartMirror/models/user.dart';
+import 'package:smartMirror/services/database.dart';
 
 
 class AuthService{
@@ -49,10 +50,15 @@ class AuthService{
 
   // register 
 
-  Future signUpUser(String email,String password) async {
+  Future signUpUser(String name,String email,String password) async {
     try {
       AuthResult result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       FirebaseUser user = result.user;
+
+      // create a new document for the user with new uid,name
+      await DatabaseService(uid: user.uid).updateUserData(name,null, <String>[], null, false);
+
+
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());
