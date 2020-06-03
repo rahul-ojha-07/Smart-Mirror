@@ -13,10 +13,22 @@ class _NewsState extends State<News> {
   List<String> dropDownItems = ["International","Bollywood","Sports","Faishon","Technology"];
 
 
-  @override
+  
   Widget build(BuildContext context) {
-    return Container(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "TO-DO",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        centerTitle: true,
+        backgroundColor: Color(0xff212121),
+      ),
+      body: Center(child: Text("News Page")),
       
     );
   }
+  
 }

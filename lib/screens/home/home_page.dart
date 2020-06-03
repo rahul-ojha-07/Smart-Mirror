@@ -14,11 +14,14 @@ class _MenuState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff424242),
+      backgroundColor: Color(0xfff3f3f3),
       appBar: AppBar(
-        backgroundColor: Color(0xff1b1b1b),
+        backgroundColor: Color(0xff121212),
         title: Text("Home"),
         centerTitle: true,
+        actions: [
+          // item
+        ],
       ),
       body: Center(
         child: GridView.count(
@@ -37,14 +40,18 @@ class _MenuState extends State<Home> {
               child: RaisedButton.icon(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    side: BorderSide(color: Color(0xffd3d3d3))),
+                    side: BorderSide(color: Color(0xff121212))),
                 icon: Icon(
                   Icons.list,
                   color: Colors.green,
                 ),
-                color: Color(0xffe3e3e3),
-                label: Text("TO-DO List"),
-                onPressed: () {},
+                color: Color(0xff121212),
+                label: Text("TO-DO List",style:TextStyle(color:Colors.white,),),
+                onPressed: () {
+                  setState(() {
+                    Navigator.pushNamed(context, '/todo');
+                  });
+                },
               ),
             ),
             Padding(
@@ -52,14 +59,18 @@ class _MenuState extends State<Home> {
               child: RaisedButton.icon(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    side: BorderSide(color: Color(0xffd3d3d3))),
+                    side: BorderSide(color: Color(0xff121212))),
                 icon: Icon(
                   Icons.edit_location,
                   color: Colors.green,
                 ),
-                color: Color(0xffe3e3e3),
-                label: Text("Set Location"),
-                onPressed: () {},
+                color: Color(0xff121212),
+                label: Text("Set Location",style:TextStyle(color:Colors.white,),),
+                onPressed: () {
+                  setState(() {
+                    Navigator.pushNamed(context, '/location');
+                  });
+                },
               ),
             ),
             Padding(
@@ -67,15 +78,19 @@ class _MenuState extends State<Home> {
               child: RaisedButton.icon(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    side: BorderSide(color: Color(0xffd3d3d3))),
+                    side: BorderSide(color: Color(0xff121212))),
                 // shape: ,
                 icon: Icon(
                   Icons.art_track,
                   color: Colors.green,
                 ),
-                color: Color(0xffe3e3e3),
-                label: Text("News Preferance"),
-                onPressed: () {},
+                color: Color(0xff121212),
+                label: Text("News Preference",style:TextStyle(color:Colors.white,),),
+                onPressed: () {
+                  setState(() {
+                    Navigator.pushNamed(context, '/news');
+                  });
+                },
               ),
             ),
 
@@ -84,14 +99,14 @@ class _MenuState extends State<Home> {
               child: RaisedButton.icon(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    side: BorderSide(color: Color(0xffd3d3d3))),
+                    side: BorderSide(color: Color(0xff121212))),
                 // shape: ,
                 icon: Icon(
                   Icons.do_not_disturb,
                   // color: Colors.green,
                 ),
-                color: Color(0xffe3e3e3),
-                label: Text("Extra"),
+                color: Color(0xff121212),
+                label: Text("Extra",style:TextStyle(color:Colors.white,),),
                 onPressed: () {},
               ),
             ),
@@ -100,13 +115,13 @@ class _MenuState extends State<Home> {
               child: RaisedButton.icon(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    side: BorderSide(color: Color(0xffd3d3d3))),
+                    side: BorderSide(color: Color(0xff121212))),
                 icon: status
                     ? Icon(Icons.brightness_7, color: Colors.white)
                     : Icon(Icons.brightness_3, color: Colors.grey[200]),
                 splashColor: !status ? Colors.green[300] : Colors.orange[300],
                 color: !status ? Colors.red[900] : Colors.green[900],
-                label: Text("ON/OFF"),
+                label: Text("ON/OFF",style:TextStyle(color:Colors.white,),),
                 onPressed: () {
                   // sleep2();
                   Future.delayed(const Duration(seconds: 1), () {
@@ -122,14 +137,14 @@ class _MenuState extends State<Home> {
               child: RaisedButton.icon(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    side: BorderSide(color: Color(0xffd3d3d3))),
+                    side: BorderSide(color: Color(0xff121212))),
                 // shape: ,
                 icon: Icon(
                   Icons.person,
                   color: Colors.green,
                 ),
-                color: Color(0xffe3e3e3),
-                label: Text("Log out"),
+                color: Color(0xff121212),
+                label: Text("Log out",style:TextStyle(color:Colors.white,),),
                 onPressed: () async {
                   await _auth.signOut();
                 },

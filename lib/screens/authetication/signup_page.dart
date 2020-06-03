@@ -39,7 +39,7 @@ class _SignupScreenState extends State<SignupScreen> {
             if (name.isEmpty) {
               return "Name Can Not be empty!";
             } else {
-              name = name;
+              this.name = name;
               return null;
             }
           },
@@ -123,7 +123,7 @@ class _SignupScreenState extends State<SignupScreen> {
             if (email.isEmpty) {
               return "Email Can Not be empty!";
             } else {
-              email = email;
+              this.email = email;
               return null;
             }
           },
