@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:smartMirror/models/user.dart';
 import 'package:smartMirror/screens/loading_screen.dart';
 import 'package:smartMirror/services/auth.dart';
 import 'package:smartMirror/utils/constants.dart';
@@ -105,8 +104,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               _buildLoginBtn(),
                               SizedBox(height: 20.0),
                               _buildSignupBtn(),
-
-                             
                             ],
                           ),
                         ),
@@ -118,6 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           );
   }
+
   Widget _buildEmailTF() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -201,6 +199,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ],
     );
   }
+
   Widget _buildLoginBtn() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 25.0),
@@ -226,7 +225,6 @@ class _LoginScreenState extends State<LoginScreen> {
               print(result.uid);
 
               print(UserId.uid);
-              
             }
 
             print("$mail and $psw");

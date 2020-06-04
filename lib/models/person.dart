@@ -11,3 +11,4 @@ class Person {
       this.newsPreference,
       this.toDoList});
 }
+

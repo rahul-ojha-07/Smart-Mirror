@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smartMirror/services/database.dart';
-import 'package:smartMirror/utils/user_id.dart';
+
 
 class AddTODO extends StatefulWidget {
   final List lst;
@@ -70,7 +69,7 @@ class _AddTODOState extends State<AddTODO> {
 }
 
 class EditTODO extends StatefulWidget {
-  String task;
+  final String task;
 
   EditTODO({this.task});
 
@@ -133,6 +132,6 @@ class _EditTODOState extends State<EditTODO> {
               ),
             ),
           ),
-        ));;
+        ));
   }
 }

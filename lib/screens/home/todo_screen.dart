@@ -1,12 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:smartMirror/models/person.dart';
 import 'package:smartMirror/screens/home/todo_tasks.dart';
 import 'package:smartMirror/screens/loading_screen.dart';
-import 'package:smartMirror/services/auth.dart';
 import 'package:smartMirror/services/database.dart';
-import 'package:smartMirror/utils/constants.dart';
 import 'package:smartMirror/utils/user_id.dart';
 
 class TODO extends StatefulWidget {

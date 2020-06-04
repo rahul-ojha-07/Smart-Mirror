@@ -11,19 +11,7 @@ import 'package:provider/provider.dart';
 import 'package:smartMirror/services/auth.dart';
 import 'package:smartMirror/models/user.dart';
 
-// void main() {
-//   runApp(
-//     MaterialApp(
-//       initialRoute: '/home',
-//       routes: {
-//         '/login': (context) => LoginScreen(),
-//         '/home': (context) => Home(),
-//         '/menu': (context) => Menu(),
-//         '/signup': (context) => SignupScreen(),
-//       },
-//     ),
-//   );
-// }
+
 
 void main() => runApp(MyApp());
 
