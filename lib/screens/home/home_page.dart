@@ -101,10 +101,13 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 onPressed: () async {
-                  await Navigator.pushNamed(context, '/location').then((value) async{
-                    await dbs.updateLocation(value).then((value) async{
-                      await dbs.updateData();
-                    });
+                  await Navigator.pushNamed(context, '/location')
+                      .then((value) async {
+                    if (value != null) {
+                      await dbs.updateLocation(value).then((value) async {
+                        await dbs.updateData();
+                      });
+                    }
                   });
                 },
               ),

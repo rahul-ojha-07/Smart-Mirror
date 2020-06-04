@@ -244,7 +244,7 @@ class _LocationState extends State<Location> {
             'state': place.administrativeArea,
             'country': place.administrativeArea,
             'pin': place.postalCode,
-          'position': {place.position.latitude,place.position.longitude}
+          'position': {'lat':place.position.latitude,'long':place.position.longitude}
           };
         }).toList();
       });
@@ -268,7 +268,7 @@ class _LocationState extends State<Location> {
           'state': place.administrativeArea,
           'country': place.administrativeArea,
           'pin': place.postalCode,
-          'position': {place.position.latitude,place.position.longitude}
+          'position': {'lat':place.position.latitude,'long':place.position.longitude}
         };
         finalValue = _currentAddress;
       });
