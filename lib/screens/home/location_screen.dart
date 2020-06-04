@@ -61,6 +61,7 @@ class _LocationState extends State<Location> {
         backgroundColor: Color(0xff212121),
         centerTitle: true,
       ),
+      resizeToAvoidBottomPadding: false,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -70,31 +71,30 @@ class _LocationState extends State<Location> {
               _getLocationTextCard(_currentAddress),
             if (!hideList) _listBuilder(),
             if (!hideForm)
-              SizedBox(
-                height: 20,
-                child: Container(
-                  color: Colors.amber,
-                  padding: EdgeInsets.all(10),
-                  margin: EdgeInsets.fromLTRB(10, 20, 10, 50),
-                  child: SizedBox(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.location_on,
-                          color: Colors.black,
-                          size: 35,
-                        ),
-                        hintText: 'e.g. locality, city',
-                        hintStyle: TextStyle(),
+              Container(
+                color: Colors.amber,
+                padding: EdgeInsets.all(10),
+                margin: EdgeInsets.fromLTRB(10, 20, 10, 50),
+                child: SizedBox(
+                  child: TextField(
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.location_on,
+                        color: Colors.black,
+                        size: 35,
                       ),
-                      style: TextStyle(
-                        color: Color(0xff212121),
-                        fontSize: 20,
-                      ),
-                      onChanged: (value) {
-                        locationStr = value;
-                      },
+                      hintText: 'e.g. locality, city',
+                      hintStyle: TextStyle(),
                     ),
+                    style: TextStyle(
+                      color: Color(0xff212121),
+                      fontSize: 20,
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        locationStr = value;
+                      });
+                    },
                   ),
                 ),
               ),
@@ -194,7 +194,7 @@ class _LocationState extends State<Location> {
                         ),
                       ),
                       onPressed: () async {
-                        // _getCurrentLocation();
+                        Navigator.pop(context, finalValue);
                       },
                     ),
                   ),
@@ -221,7 +221,7 @@ class _LocationState extends State<Location> {
   }
 
   _getAddressFromAdd(String address) async {
-    if (address==null || address ==''){
+    if (address == null || address == '') {
       return;
     }
     try {
@@ -237,13 +237,14 @@ class _LocationState extends State<Location> {
         hideList = false;
         this.ps = ps.map((place) {
           return {
-            'place': place.subLocality,
+            'place':
+                place.subLocality == "" ? place.locality : place.subLocality,
             'city': place.locality,
             'dist': place.subAdministrativeArea,
             'state': place.administrativeArea,
             'country': place.administrativeArea,
             'pin': place.postalCode,
-            'position': place.position
+          'position': {place.position.latitude,place.position.longitude}
           };
         }).toList();
       });
@@ -261,14 +262,15 @@ class _LocationState extends State<Location> {
 
       setState(() {
         _currentAddress = {
-          'place': place.subLocality,
+          'place': place.subLocality == "" ? place.locality : place.subLocality,
           'city': place.locality,
           'dist': place.subAdministrativeArea,
           'state': place.administrativeArea,
           'country': place.administrativeArea,
           'pin': place.postalCode,
-          'position': place.position
+          'position': {place.position.latitude,place.position.longitude}
         };
+        finalValue = _currentAddress;
       });
     } catch (e) {
       print(e);
@@ -281,22 +283,40 @@ class _LocationState extends State<Location> {
       child: Container(
         padding: EdgeInsets.fromLTRB(10, 30, 10, 30),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Icon(Icons.location_on),
-            Flexible(child: Text(location.toString())),
+            if (location!=null) Flexible(
+              child: Text(
+                  "${location['place']}, ${location['city']}, ${location['state']}"),
+            ),
+            Radio(
+              value: location,
+              groupValue: location,
+              onChanged: (value) {
+                setState(() {
+                  finalValue = value;
+                });
+              },
+            )
           ],
         ),
       ),
     );
   }
 
+  var finalValue;
+  var first;
+
   Widget _listBuilder() {
     return SizedBox(
       height: 240,
-      width: 240,
+      width: 400,
       child: ListView.builder(
         itemCount: ps.length,
         itemBuilder: (BuildContext context, int index) {
+          first = ps[0];
+          finalValue = ps[0];
           return _getLocationTextCard(ps[index]);
         },
       ),

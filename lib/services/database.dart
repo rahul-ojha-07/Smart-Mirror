@@ -10,7 +10,7 @@ class DatabaseService {
   final CollectionReference personCollection = 
       Firestore.instance.collection('persons');
 
-  Future updateUserData(String uid,String email,String userName, String location, List toDoList,
+  Future updateUserData(String uid,String email,String userName,var location, List toDoList,
       String newsPreference, bool mirrorStatus) async {
     return await personCollection.document(uid).setData({
       "uid":uid,
@@ -33,6 +33,9 @@ class DatabaseService {
     return await personCollection.document(uid).setData({'newsPreference': newsPref},merge: true);
   }
 
+  Future updateLocation(dynamic location) async{
+    return await personCollection.document(uid).setData({'location': location},merge: true);
+  }
 
   var currentUserData;
 

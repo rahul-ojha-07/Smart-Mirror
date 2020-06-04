@@ -16,30 +16,22 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   // bool status = true;
-AuthService _auth = AuthService();
-  DatabaseService dbs = DatabaseService(uid:UserId.uid);
+  AuthService _auth = AuthService();
+  DatabaseService dbs = DatabaseService(uid: UserId.uid);
   bool loading = true;
   bool status = true;
-@override
-void initState() { 
-  super.initState();
-  setState(() {
-    dbs.updateData().then((value) {
-      setState(() {
-        status = value['mirrorStatus'];
-        loading = false;
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      dbs.updateData().then((value) {
+        setState(() {
+          status = value['mirrorStatus'];
+          loading = false;
+        });
       });
-    })   ;
-  });
-  
-  
-}
-
-
-    
-  
-
-
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -108,9 +100,11 @@ void initState() {
                     color: Colors.white,
                   ),
                 ),
-                onPressed: () {
-                  setState(() {
-                    Navigator.pushNamed(context, '/location');
+                onPressed: () async {
+                  await Navigator.pushNamed(context, '/location').then((value) async{
+                    await dbs.updateLocation(value).then((value) async{
+                      await dbs.updateData();
+                    });
                   });
                 },
               ),
@@ -136,7 +130,11 @@ void initState() {
                 onPressed: () {
                   setState(() {
                     // Navigator.pushNamed(context, '/news');
-                    Navigator.push(context,MaterialPageRoute(builder: (context) => News(dbs:dbs),));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => News(dbs: dbs),
+                        ));
                   });
                 },
               ),
@@ -165,35 +163,39 @@ void initState() {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: loading ? SpinKitFadingCube(color: Colors.black,) : RaisedButton.icon(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    side: BorderSide(color: Color(0xff121212))),
-                icon: status
-                    ? Icon(Icons.brightness_7, color: Colors.white)
-                    : Icon(Icons.brightness_3, color: Colors.grey[200]),
-                splashColor: !status ? Colors.green[300] : Colors.orange[300],
-                color: !status ? Colors.red[900] : Colors.green[900],
-                label: Text(
-                  "ON/OFF",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-                onPressed: () async{
-                  setState(() {
-                    loading = true; 
-                  });
-                  await dbs.toggleMirrorStatus();
-                    
-                   dbs.updateData();
-                    setState(() {
-                      status = !status;
-                      loading = false;
-                    });
-                  
-                },
-              ),
+              child: loading
+                  ? SpinKitFadingCube(
+                      color: Colors.black,
+                    )
+                  : RaisedButton.icon(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          side: BorderSide(color: Color(0xff121212))),
+                      icon: status
+                          ? Icon(Icons.brightness_7, color: Colors.white)
+                          : Icon(Icons.brightness_3, color: Colors.grey[200]),
+                      splashColor:
+                          !status ? Colors.green[300] : Colors.orange[300],
+                      color: !status ? Colors.red[900] : Colors.green[900],
+                      label: Text(
+                        "ON/OFF",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      onPressed: () async {
+                        setState(() {
+                          loading = true;
+                        });
+                        await dbs.toggleMirrorStatus();
+
+                        dbs.updateData();
+                        setState(() {
+                          status = !status;
+                          loading = false;
+                        });
+                      },
+                    ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
