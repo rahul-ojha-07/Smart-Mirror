@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smartMirror/models/user.dart';
 import 'package:smartMirror/screens/authetication/authenticate.dart';
-import 'package:smartMirror/screens/home/home_page.dart';
+import 'package:smartMirror/screens/home/navigation_page.dart';
 import 'package:smartMirror/utils/user_id.dart';
-import 'package:smartMirror/services/database.dart';
 
 class Wrapper extends StatelessWidget {
   @override
@@ -19,8 +18,8 @@ class Wrapper extends StatelessWidget {
       return Authenticate();
     } else {
       UserId.uid = user.uid;
-      DatabaseService dbs = DatabaseService(uid:UserId.uid);
-      return Home(dbs:dbs);
+      
+      return NavigationPage();
     }
   }
 }

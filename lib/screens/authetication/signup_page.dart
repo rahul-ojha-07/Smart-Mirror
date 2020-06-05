@@ -44,62 +44,36 @@ class _SignupScreenState extends State<SignupScreen> {
             }
           },
           style: TextStyle(
-            color: Colors.white,
+            color: Color(0xff212121),
             fontFamily: 'OpenSans',
+            fontSize: 15.0,
           ),
           decoration: InputDecoration(
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
+            helperText: ' ',
+            focusedBorder: UnderlineInputBorder(
               borderSide: BorderSide(
-                width: 0,
-                color: Colors.grey[700],
-                style: BorderStyle.none,
+                width: 2,
+                color: Color(0xffff79ff),
               ),
             ),
-            hoverColor: Colors.grey[700],
-            focusedBorder: OutlineInputBorder(
+            focusedErrorBorder: UnderlineInputBorder(
               borderRadius: BorderRadius.circular(10.0),
               borderSide: BorderSide(
-                width: 0,
-                color: Colors.grey[700],
-                style: BorderStyle.none,
+                width: 2,
+                color: Colors.red[900],
               ),
             ),
-            errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                width: 0,
-                color: Colors.grey[700],
-                style: BorderStyle.none,
-              ),
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                width: 0,
-                color: Colors.grey[700],
-                style: BorderStyle.none,
-              ),
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                width: 0,
-                color: Colors.grey[700],
-                style: BorderStyle.none,
-              ),
-            ),
-            fillColor: Colors.grey[700],
+            fillColor: Colors.white,
             filled: true,
-            contentPadding: EdgeInsets.all(20.0),
+            contentPadding: EdgeInsets.all(5.0),
             prefixIcon: Icon(
               Icons.email,
-              color: Colors.white,
+              color: Color(0xff212121),
             ),
             hintText: 'Enter Full Name',
             hintStyle: kHintTextStyle,
             errorStyle: TextStyle(
-              color: Colors.amber,
+              color: Colors.red[900],
             ),
           ),
         ),
@@ -128,62 +102,33 @@ class _SignupScreenState extends State<SignupScreen> {
             }
           },
           style: TextStyle(
-            color: Colors.white,
+            color: Color(0xff212121),
             fontFamily: 'OpenSans',
+            fontSize: 15.0,
           ),
           decoration: InputDecoration(
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                width: 0,
-                color: Colors.grey[700],
-                style: BorderStyle.none,
-              ),
-            ),
-            hoverColor: Colors.grey[700],
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                width: 0,
-                color: Colors.grey[700],
-                style: BorderStyle.none,
-              ),
-            ),
-            errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                width: 0,
-                color: Colors.grey[700],
-                style: BorderStyle.none,
-              ),
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                width: 0,
-                color: Colors.grey[700],
-                style: BorderStyle.none,
-              ),
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                width: 0,
-                color: Colors.grey[700],
-                style: BorderStyle.none,
-              ),
-            ),
-            fillColor: Colors.grey[700],
+            helperText: ' ',
+            focusedErrorBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+              color: Colors.red,
+              width: 2,
+            )),
+            focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+              color: Color(0xffff79ff),
+              width: 2,
+            )),
+            fillColor: Colors.white,
             filled: true,
-            contentPadding: EdgeInsets.all(20.0),
+            contentPadding: EdgeInsets.all(5.0),
             prefixIcon: Icon(
               Icons.email,
-              color: Colors.white,
+              color: Color(0xff212121),
             ),
             hintText: 'Enter your Email',
             hintStyle: kHintTextStyle,
             errorStyle: TextStyle(
-              color: Colors.amber,
+              color: Colors.red[900],
             ),
           ),
         ),
@@ -217,60 +162,31 @@ class _SignupScreenState extends State<SignupScreen> {
             }
           },
           style: TextStyle(
-            color: Colors.white,
+            color: Color(0xff212121),
             fontFamily: 'OpenSans',
+            fontSize: 15.0,
           ),
           decoration: InputDecoration(
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                width: 0,
-                color: Colors.grey[700],
-                style: BorderStyle.none,
-              ),
-            ),
-            hoverColor: Colors.grey[700],
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                width: 0,
-                color: Colors.grey[700],
-                style: BorderStyle.none,
-              ),
-            ),
-            errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                width: 0,
-                color: Colors.grey[700],
-                style: BorderStyle.none,
-              ),
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                width: 0,
-                color: Colors.grey[700],
-                style: BorderStyle.none,
-              ),
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                width: 0,
-                color: Colors.grey[700],
-                style: BorderStyle.none,
-              ),
-            ),
-            fillColor: Colors.grey[700],
+            helperText: ' ',
+            focusedErrorBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+              color: Colors.red,
+              width: 2,
+            )),
+            focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+              color: Color(0xffff79ff),
+              width: 2,
+            )),
+            fillColor: Colors.white,
             filled: true,
-            contentPadding: EdgeInsets.all(20.0),
+            contentPadding: EdgeInsets.all(5.0),
             prefixIcon: Icon(
               Icons.lock,
-              color: Colors.white,
+              color: Color(0xff212121),
             ),
             suffixIcon: IconButton(
-                color: Colors.grey,
+                color: Color(0xff212121),
                 icon: Icon(
                   hidePassword ? Icons.visibility : Icons.visibility_off,
                 ),
@@ -282,7 +198,7 @@ class _SignupScreenState extends State<SignupScreen> {
             hintText: 'Enter your Password',
             hintStyle: kHintTextStyle,
             errorStyle: TextStyle(
-              color: Colors.amber,
+              color: Colors.red[900],
             ),
           ),
         ),
@@ -315,60 +231,31 @@ class _SignupScreenState extends State<SignupScreen> {
             }
           },
           style: TextStyle(
-            color: Colors.white,
+            color: Color(0xff212121),
             fontFamily: 'OpenSans',
+            fontSize: 15.0,
           ),
           decoration: InputDecoration(
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                width: 0,
-                color: Colors.grey[700],
-                style: BorderStyle.none,
-              ),
-            ),
-            hoverColor: Colors.grey[700],
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                width: 0,
-                color: Colors.grey[700],
-                style: BorderStyle.none,
-              ),
-            ),
-            errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                width: 0,
-                color: Colors.grey[700],
-                style: BorderStyle.none,
-              ),
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                width: 0,
-                color: Colors.grey[700],
-                style: BorderStyle.none,
-              ),
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                width: 0,
-                color: Colors.grey[700],
-                style: BorderStyle.none,
-              ),
-            ),
-            fillColor: Colors.grey[700],
+            helperText: ' ',
+            focusedErrorBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+              color: Colors.red,
+              width: 2,
+            )),
+            focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+              color: Color(0xffff79ff),
+              width: 2,
+            )),
+            fillColor: Colors.white,
             filled: true,
-            contentPadding: EdgeInsets.all(20.0),
+            contentPadding: EdgeInsets.all(5.0),
             prefixIcon: Icon(
               Icons.lock,
-              color: Colors.white,
+              color: Color(0xff212121),
             ),
             suffixIcon: IconButton(
-                color: Colors.grey,
+                color: Color(0xff212121),
                 icon: Icon(
                   hideCofirmPassword ? Icons.visibility : Icons.visibility_off,
                 ),
@@ -380,7 +267,7 @@ class _SignupScreenState extends State<SignupScreen> {
             hintText: 'Re-Enter your Password',
             hintStyle: kHintTextStyle,
             errorStyle: TextStyle(
-              color: Colors.amber,
+              color: Colors.red[900],
             ),
           ),
         ),
@@ -403,10 +290,9 @@ class _SignupScreenState extends State<SignupScreen> {
             });
             dynamic result = await _auth.signUpUser(name, email, password);
             UserId.uid = result.uid;
-              print(result.uid);
+            print(result.uid);
 
-              print(UserId.uid);
-            
+            print(UserId.uid);
 
             if (result == null) {
               setState(() {
@@ -425,11 +311,11 @@ class _SignupScreenState extends State<SignupScreen> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
-        color: Colors.white,
+        color: Color(0xffff79ff),
         child: Text(
           'REGISTER',
           style: TextStyle(
-            color: Colors.grey[700],
+            color: Colors.white,
             letterSpacing: 1.5,
             fontSize: 18.0,
             fontWeight: FontWeight.bold,
@@ -451,15 +337,15 @@ class _SignupScreenState extends State<SignupScreen> {
             TextSpan(
               text: 'Already have an Account? ',
               style: TextStyle(
-                color: Colors.white,
+                color: Color(0xff212121),
                 fontSize: 18.0,
                 fontWeight: FontWeight.w400,
               ),
             ),
             TextSpan(
-              text: 'Sign In',
+              text: 'Log In',
               style: TextStyle(
-                color: Colors.white,
+                color: Color(0xffff79ff),
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
               ),
@@ -475,6 +361,8 @@ class _SignupScreenState extends State<SignupScreen> {
     return loading
         ? Loading()
         : Scaffold(
+          resizeToAvoidBottomPadding: false,
+            backgroundColor: Color(0xffff79ff),
             body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.dark,
               child: GestureDetector(
@@ -484,75 +372,58 @@ class _SignupScreenState extends State<SignupScreen> {
                     Container(
                       height: double.infinity,
                       width: double.infinity,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          // colors: [
-                          //   Color(0xFF73AEF5),
-                          //   Color(0xFF61A4F1),
-                          //   Color(0xFF478DE0),
-                          //   Color(0xFF398AE5),
-                          // ],
-                          colors: [
-                            Colors.grey[500],
-                            Colors.grey[600],
-                            Colors.grey[700],
-                            Colors.grey[800],
-                          ],
-                          stops: [0.1, 0.4, 0.7, 0.9],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: double.infinity,
-                      child: SingleChildScrollView(
-                        physics: AlwaysScrollableScrollPhysics(),
+                      child: Container(
                         padding: EdgeInsets.symmetric(
-                          horizontal: 40.0,
-                          vertical: 40.0,
+                          horizontal: 5.0,
+                          vertical: 20.0,
                         ),
-                        child: Form(
-                          key: _signUpKey,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                'Sign Up',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'OpenSans',
-                                  fontSize: 30.0,
-                                  fontWeight: FontWeight.bold,
+                        child: SizedBox(
+                          child: Card(
+                            margin: EdgeInsets.all(10),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.fromLTRB(10, 20, 10, 20),
+                              child: Form(
+                                key: _signUpKey,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(
+                                      'Register',
+                                      style: TextStyle(
+                                        color: Color(0xff212121),
+                                        fontFamily: 'OpenSans',
+                                        fontSize: 30.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SizedBox(height: 10.0),
+                                    _buildNameTF(),
+                                    SizedBox(
+                                      height: 10.0,
+                                    ),
+                                    _buildEmailTF(),
+                                    SizedBox(
+                                      height: 10.0,
+                                    ),
+                                    _buildPasswordTF(),
+                                    SizedBox(
+                                      height: 10.0,
+                                    ),
+                                    _buildConfirmPasswordTF(),
+                                    SizedBox(
+                                      height: 10.0,
+                                    ),
+                                    _buildRegisterBtn(),
+                                    _buildSigninBtn(),
+                                    Text(
+                                      error,
+                                      style: TextStyle(color: Colors.red),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              SizedBox(height: 30.0),
-                              _buildNameTF(),
-                              SizedBox(
-                                height: 10.0,
-                              ),
-                              _buildEmailTF(),
-                              SizedBox(
-                                height: 10.0,
-                              ),
-                              _buildPasswordTF(),
-                              SizedBox(
-                                height: 10.0,
-                              ),
-                              _buildConfirmPasswordTF(),
-                              SizedBox(
-                                height: 10.0,
-                              ),
-                              _buildRegisterBtn(),
-                              _buildSigninBtn(),
-                              SizedBox(
-                                height: 10.0,
-                              ),
-                              Text(
-                                error,
-                                style: TextStyle(color: Colors.red),
-                              ),
-                            ],
+                            ),
                           ),
                         ),
                       ),

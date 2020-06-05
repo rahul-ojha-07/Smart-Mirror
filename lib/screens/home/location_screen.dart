@@ -17,7 +17,7 @@
 //           ),
 //         ),
 //         centerTitle: true,
-//         backgroundColor: Color(0xff212121),
+//         backgroundColor: Color(0xff00BFA6),
 //       ),
 //       body: Center(
 //         child: Text(
@@ -29,8 +29,9 @@
 // }
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:smartMirror/services/database.dart';
+import 'package:smartMirror/utils/user_id.dart';
 
 class Location extends StatefulWidget {
   @override
@@ -42,6 +43,8 @@ class _LocationState extends State<Location> {
 
   Position _currentPosition;
   var _currentAddress;
+
+  DatabaseService dbs = DatabaseService(uid: UserId.uid);
 
   bool hideThis = false;
   bool hideThat = false;
@@ -56,23 +59,19 @@ class _LocationState extends State<Location> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Location"),
-        backgroundColor: Color(0xff212121),
-        centerTitle: true,
-      ),
+      backgroundColor: Colors.white,
       resizeToAvoidBottomPadding: false,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           // crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            if (_currentPosition != null && hideThis == false)
+            if (_currentPosition != null && _currentAddress != '' && hideThis == false)
               _getLocationTextCard(_currentAddress),
             if (!hideList) _listBuilder(),
             if (!hideForm)
               Container(
-                color: Colors.amber,
+                color: Colors.white,
                 padding: EdgeInsets.all(10),
                 margin: EdgeInsets.fromLTRB(10, 20, 10, 50),
                 child: SizedBox(
@@ -105,8 +104,8 @@ class _LocationState extends State<Location> {
                   SizedBox(
                     height: 70,
                     width: 150,
-                    child: RaisedButton.icon(
-                      color: Color(0xff212121),
+                    child: FlatButton.icon(
+                      color: Color(0xff00BFA6),
                       icon: Icon(
                         Icons.location_on,
                         color: Colors.white,
@@ -131,8 +130,8 @@ class _LocationState extends State<Location> {
                   SizedBox(
                     height: 70,
                     width: 150,
-                    child: RaisedButton.icon(
-                      color: Color(0xff212121),
+                    child: FlatButton.icon(
+                      color: Color(0xff00BFA6),
                       icon: Icon(
                         Icons.location_on,
                         color: Colors.white,
@@ -158,8 +157,8 @@ class _LocationState extends State<Location> {
                   SizedBox(
                     height: 70,
                     width: 150,
-                    child: RaisedButton.icon(
-                      color: Color(0xff212121),
+                    child: FlatButton.icon(
+                      color: Color(0xff00BFA6),
                       icon: Icon(
                         Icons.location_on,
                         color: Colors.white,
@@ -180,8 +179,8 @@ class _LocationState extends State<Location> {
                   SizedBox(
                     height: 70,
                     width: 150,
-                    child: RaisedButton.icon(
-                      color: Color(0xff212121),
+                    child: FlatButton.icon(
+                      color: Color(0xff00BFA6),
                       icon: Icon(
                         Icons.location_on,
                         color: Colors.white,
@@ -194,7 +193,10 @@ class _LocationState extends State<Location> {
                         ),
                       ),
                       onPressed: () async {
-                        Navigator.pop(context, finalValue);
+                        await dbs.updateLocation(finalValue);
+                        await dbs.updateData();
+                        print(await dbs.currentUserData);
+                        // Navigator.pop(context);
                       },
                     ),
                   ),

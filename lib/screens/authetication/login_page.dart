@@ -30,6 +30,8 @@ class _LoginScreenState extends State<LoginScreen> {
     return loading
         ? Loading()
         : Scaffold(
+            resizeToAvoidBottomPadding: false,
+            backgroundColor: Color(0xff00e5ff),
             body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.dark,
               child: GestureDetector(
@@ -39,72 +41,54 @@ class _LoginScreenState extends State<LoginScreen> {
                     Container(
                       height: double.infinity,
                       width: double.infinity,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          // colors: [
-                          //   Color(0xFF73AEF5),
-                          //   Color(0xFF61A4F1),
-                          //   Color(0xFF478DE0),
-                          //   Color(0xFF398AE5),
-                          // ],
-                          colors: [
-                            // Colors.grey[500],
-                            // Colors.grey[600],
-                            // Colors.grey[700],
-                            // Colors.grey[800],
-                            Color(0xff212121),
-                            Color(0xff212121),
-                            Color(0xff212121),
-                            Color(0xff212121),
-                          ],
-                          stops: [0.1, 0.4, 0.7, 0.9],
-                        ),
-                      ),
                     ),
                     Container(
                       height: double.infinity,
-                      child: SingleChildScrollView(
-                        physics: AlwaysScrollableScrollPhysics(),
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 40.0,
-                          vertical: 120.0,
-                        ),
-                        child: Form(
-                          key: _loginFormKey,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: <Widget>[
-                              Text(
-                                'Sign In',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'OpenSans',
-                                  fontSize: 30.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              SizedBox(height: 30.0),
-                              _buildEmailTF(),
-                              SizedBox(height: 30.0),
-                              _buildPasswordTF(),
-                              SizedBox(height: 5.0),
-                              Center(
-                                child: Text(
-                                  error,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 5.0,
+                        vertical: 20.0,
+                      ),
+                      child: Card(
+                        margin: EdgeInsets.all(10),
+                        // borderOnForeground: true,
+                        child: Padding(
+                          padding:
+                              const EdgeInsets.fromLTRB(10.0, 80, 10.0, 160),
+                          child: Form(
+                            key: _loginFormKey,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              // crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: <Widget>[
+                                Text(
+                                  'LOGIN',
                                   style: TextStyle(
-                                    color: Colors.red,
-                                    fontSize: 20.0,
+                                    color: Colors.black,
+                                    fontFamily: 'OpenSans',
+                                    fontSize: 30.0,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                              ),
-                              // SizedBox(height: 10.0),
-                              _buildLoginBtn(),
-                              SizedBox(height: 20.0),
-                              _buildSignupBtn(),
-                            ],
+                                SizedBox(height: 30.0),
+                                _buildEmailTF(),
+                                SizedBox(height: 10.0),
+                                _buildPasswordTF(),
+                                SizedBox(height: 5.0),
+                                Center(
+                                  child: Text(
+                                    error,
+                                    style: TextStyle(
+                                      color: Colors.red,
+                                      fontSize: 20.0,
+                                    ),
+                                  ),
+                                ),
+                                // SizedBox(height: 10.0),
+                                _buildLoginBtn(),
+                                SizedBox(height: 20.0),
+                                _buildSignupBtn(),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -137,62 +121,33 @@ class _LoginScreenState extends State<LoginScreen> {
           },
           autovalidate: autoValidate,
           style: TextStyle(
-            color: Colors.white,
+            color: Color(0xff212121),
             fontFamily: 'OpenSans',
+            fontSize: 15.0,
           ),
           decoration: InputDecoration(
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                width: 0,
-                color: Colors.grey[700],
-                style: BorderStyle.none,
-              ),
-            ),
-            hoverColor: Colors.grey[700],
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                width: 0,
-                color: Colors.grey[700],
-                style: BorderStyle.none,
-              ),
-            ),
-            errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                width: 0,
-                color: Colors.grey[700],
-                style: BorderStyle.none,
-              ),
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                width: 0,
-                color: Colors.grey[700],
-                style: BorderStyle.none,
-              ),
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                width: 0,
-                color: Colors.grey[700],
-                style: BorderStyle.none,
-              ),
-            ),
-            fillColor: Colors.grey[700],
+            focusedErrorBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+              color: Colors.red,
+              width: 2,
+            )),
+            focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+              color: Color(0xff00e5ff),
+              width: 2,
+            )),
+            fillColor: Colors.white54,
             filled: true,
-            contentPadding: EdgeInsets.all(20.0),
+            helperText: ' ',
+            contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             prefixIcon: Icon(
               Icons.email,
-              color: Colors.white,
+              color: Color(0xff212121),
             ),
             hintText: 'Enter your Email',
             hintStyle: kHintTextStyle,
             errorStyle: TextStyle(
-              color: Colors.amber,
+              color: Colors.red[900],
             ),
           ),
         ),
@@ -204,6 +159,29 @@ class _LoginScreenState extends State<LoginScreen> {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 25.0),
       width: double.infinity,
+      // decoration: BoxDecoration(
+      //   gradient: LinearGradient(
+      //     begin: Alignment.topRight,
+      //     end: Alignment.bottomCenter,
+      //     // colors: [
+      //     //   Color(0xFF73AEF5),
+      //     //   Color(0xFF61A4F1),
+      //     //   Color(0xFF478DE0),
+      //     //   Color(0xFF398AE5),
+      //     // ],
+      //     colors: [
+      //       // Colors.grey[500],
+      //       // Colors.grey[600],
+      //       // Colors.white,
+      //       // Colors.grey[800],
+      //       Color(0xffE040FB),
+      //       Color(0xffFF5252),
+      //       Color(0xff76FF03),
+      //       Color(0xff00e5ff),
+      //     ],
+      //     stops: [1.0, 2.0, 3.0, 4.0],
+      //   ),
+      // ),
       child: RaisedButton(
         elevation: 5.0,
         onPressed: () async {
@@ -238,11 +216,11 @@ class _LoginScreenState extends State<LoginScreen> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
-        color: Colors.white,
+        color: Color(0xff00e5ff),
         child: Text(
           'LOGIN',
           style: TextStyle(
-            color: Colors.grey[700],
+            color: Colors.black,
             letterSpacing: 1.5,
             fontSize: 18.0,
             fontWeight: FontWeight.bold,
@@ -275,60 +253,32 @@ class _LoginScreenState extends State<LoginScreen> {
             }
           },
           style: TextStyle(
-            color: Colors.white,
+            color: Color(0xff212121),
             fontFamily: 'OpenSans',
+            fontSize: 15.0,
           ),
           decoration: InputDecoration(
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                width: 0,
-                color: Colors.grey[700],
-                style: BorderStyle.none,
-              ),
-            ),
-            hoverColor: Colors.grey[700],
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                width: 0,
-                color: Colors.grey[700],
-                style: BorderStyle.none,
-              ),
-            ),
-            errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                width: 0,
-                color: Colors.grey[700],
-                style: BorderStyle.none,
-              ),
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                width: 0,
-                color: Colors.grey[700],
-                style: BorderStyle.none,
-              ),
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                width: 0,
-                color: Colors.grey[700],
-                style: BorderStyle.none,
-              ),
-            ),
-            fillColor: Colors.grey[700],
+            focusedErrorBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+              color: Colors.red,
+              width: 2,
+            )),
+            focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+              color: Color(0xff00e5ff),
+              width: 2,
+            )),
+            helperText: ' ',
+            fillColor: Colors.white,
             filled: true,
-            contentPadding: EdgeInsets.all(20.0),
+            contentPadding: EdgeInsets.all(10.0),
             prefixIcon: Icon(
               Icons.lock,
-              color: Colors.white,
+              color: Color(0xff212121),
+              size: 29,
             ),
             suffixIcon: IconButton(
-                color: Colors.grey,
+                color: Color(0xff212121),
                 icon: Icon(
                   hidePassword ? Icons.visibility : Icons.visibility_off,
                 ),
@@ -340,7 +290,7 @@ class _LoginScreenState extends State<LoginScreen> {
             hintText: 'Enter your Password',
             hintStyle: kHintTextStyle,
             errorStyle: TextStyle(
-              color: Colors.amber,
+              color: Colors.red[900],
             ),
           ),
         ),
@@ -359,15 +309,15 @@ class _LoginScreenState extends State<LoginScreen> {
             TextSpan(
               text: 'Don\'t have an Account? ',
               style: TextStyle(
-                color: Colors.white,
+                color: Color(0xff212121),
                 fontSize: 18.0,
                 fontWeight: FontWeight.w400,
               ),
             ),
             TextSpan(
-              text: 'Sign Up',
+              text: 'Register',
               style: TextStyle(
-                color: Colors.white,
+                color: Color(0xff00e5ff),
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
               ),
@@ -384,7 +334,7 @@ class _LoginScreenState extends State<LoginScreen> {
 //                               EdgeInsets.symmetric(horizontal: 0, vertical: 20),
 //                           child: Material(
 //                             borderRadius: BorderRadius.circular(10.0),
-//                             color: Colors.grey[700],
+//                             color: Colors.white,
 //                             elevation: 2,
 //                             shadowColor: Colors.blueGrey,
 //                             child: TextFormField(
@@ -395,29 +345,29 @@ class _LoginScreenState extends State<LoginScreen> {
 //                                   return null;
 //                                 }
 //                               },decoration: InputDecoration(
-//                                 enabledBorder: OutlineInputBorder(
+//                                 enabledBorder: UnderlineInputBorder(
 //                                   borderRadius: BorderRadius.circular(10.0),
 //                                   borderSide: BorderSide(
 //                                       width: 0,
-//                                       color: Colors.grey[700],
+//                                       color: Colors.white,
 //                                       style: BorderStyle.none),
 //                                 ),
-//                                 hoverColor: Colors.grey[700],
-//                                 focusedBorder: OutlineInputBorder(
+//                                 hoverColor: Colors.white,
+//                                 focusedBorder: UnderlineInputBorder(
 //                                   borderRadius: BorderRadius.circular(10.0),
 //                                   borderSide: BorderSide(
 //                                       width: 0,
-//                                       color: Colors.grey[700],
+//                                       color: Colors.white,
 //                                       style: BorderStyle.none),
 //                                 ),
-//                                 border: OutlineInputBorder(
+//                                 border: UnderlineInputBorder(
 //                                   borderRadius: BorderRadius.circular(10.0),
 //                                   borderSide: BorderSide(
 //                                       width: 0,
-//                                       color: Colors.grey[700],
+//                                       color: Colors.white,
 //                                       style: BorderStyle.none),
 //                                 ),
-//                                 fillColor: Colors.grey[700],
+//                                 fillColor: Colors.white,
 //                                 filled: true,
 //                                 contentPadding: EdgeInsets.all(20.0),
 //                               ),

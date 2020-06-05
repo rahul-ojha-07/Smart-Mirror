@@ -24,12 +24,18 @@ class _NewsState extends State<News> {
     "Technology"
   ];
 
+  @override
+  void initState() { 
+    super.initState();
+    widget.dbs.updateData().then((value) { 
+      setState((){
+        dropDownValue = value['newsPreference'];
+      });
+    });
+  }
   String dropDownValue = "Select...";
 
-  String setDropDownValue(){
-    dropDownValue = dropDownItems.contains(widget.dbs.currentUserData['newsPreference'] ?? "hgk") ? widget.dbs.currentUserData['newsPreference'] : 'Select...';
-    return dropDownValue; 
-  }
+  
 
   
   // dropDownValue = dropDownItems.contains(widget.data)? widget.data :'Select...';
@@ -37,18 +43,8 @@ class _NewsState extends State<News> {
   
   Widget build(BuildContext context) {
   
-    setDropDownValue();
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "News Preferences",
-          style: TextStyle(
-            color: Colors.white,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: Color(0xff212121),
-      ),
+      backgroundColor: Colors.white,
       body: Center(
         child: Container(
           // color: Color(0xfff1f1f1),
@@ -69,6 +65,7 @@ class _NewsState extends State<News> {
                 onChanged: (newValue) async{
                   setState(() {
                     widget.dbs.currentUserData['newsPreference'] = newValue;
+                    dropDownValue = newValue;
                   });
                   await widget.dbs.updateNews(newValue);
                   await widget.dbs.updateData();
