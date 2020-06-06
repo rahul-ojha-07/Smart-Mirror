@@ -29,7 +29,7 @@ class _NewsState extends State<News> {
     super.initState();
     widget.dbs.updateData().then((value) { 
       setState((){
-        dropDownValue = value['newsPreference'];
+        dropDownValue = value['newsPreference']??"Select...";
       });
     });
   }

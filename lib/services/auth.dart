@@ -5,7 +5,7 @@ import 'package:smartMirror/services/database.dart';
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  String uid = "x";
+
   // create user based on firebase user
   User _userFromFirebaseUser(FirebaseUser user) {
     return user != null ? User(uid: user.uid) : null;
@@ -16,12 +16,6 @@ class AuthService {
     return _auth.onAuthStateChanged.map(_userFromFirebaseUser);
   }
 
-  String getUid(){
-    return uid;
-  }
-  void setUid(String id){
-    uid = id;
-  }
 
   // to sign in anonymously
   Future signInAnon() async {
@@ -42,6 +36,7 @@ class AuthService {
       AuthResult result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
+      await DatabaseService(uid: user.uid).mirrorLoginOnUser(user.uid);
       // uid = user.uid;
       return _userFromFirebaseUser(user);
     } catch (e) {
@@ -61,6 +56,7 @@ class AuthService {
       // create a new document for the user with new uid,name
       await DatabaseService(uid: user.uid)
           .updateUserData(user.uid,email,name, null, [{"checked":false,"description":"Demo Task"},], null, false);
+      await DatabaseService(uid: user.uid).mirrorLoginOnUser(user.uid);
 
       return _userFromFirebaseUser(user);
     } catch (e) {
@@ -72,8 +68,9 @@ class AuthService {
 
   // sign out
 
-  Future signOut() async {
+  Future signOut(String uid) async {
     try {
+      DatabaseService(uid: uid).mirrorLogOutUser(uid);
       return await _auth.signOut();
     } catch (e) {
       print(e.toString());

@@ -75,7 +75,7 @@ class _NavigationPageState extends State<NavigationPage> {
             onPressed: () async {
               await _getSimpleDialog();
               if (logout){
-                await _auth.signOut().whenComplete(() {
+                await _auth.signOut(UserId.uid).whenComplete(() {
                 UserId.uid = '';
               });
               }

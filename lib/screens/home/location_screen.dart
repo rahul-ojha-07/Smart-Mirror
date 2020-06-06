@@ -218,8 +218,71 @@ class _LocationState extends State<Location> {
 
       _getAddressFromLatLng();
     }).catchError((e) {
-      print(e);
+      // print(e);
+      _getSimpleDialogGps();
     });
+  }
+
+
+  
+  Future<void> _getSimpleDialog() async {
+    try{
+      await showDialog(
+      context: context,
+      builder: (BuildContext context){
+        return AlertDialog(
+          title: Flexible(child: Text("Could ot get location make sure you have an active internet connection!")),
+          actions: <Widget>[
+            FlatButton(
+              onPressed: () {
+                Navigator.pop(context,true);
+              },
+              child: Text("OK"),
+            ),
+            
+          ],
+        );
+      }
+    ).then((value) {
+      setState(() {
+        
+        // logout = value ?? false;
+      });
+    });
+    }catch(e){
+      print(e.toString());
+    }
+    
+  }
+  
+  Future<void> _getSimpleDialogGps() async {
+    try{
+      await showDialog(
+      context: context,
+      builder: (BuildContext context){
+        return AlertDialog(
+          title: Flexible(child: Text("Could ot get location make sure your gps is turned on!")),
+          actions: <Widget>[
+            FlatButton(
+              onPressed: () {
+                Navigator.pop(context,true);
+              },
+              child: Text("OK"),
+            ),
+           
+          ],
+        );
+      }
+    ).then((value) {
+      setState(() {
+        
+        // logout = value ?? false;
+      });
+    });
+    }catch(e){
+      print(e.toString());
+    }
+    
   }
 
   _getAddressFromAdd(String address) async {
@@ -251,6 +314,7 @@ class _LocationState extends State<Location> {
         }).toList();
       });
     } catch (e) {
+      _getSimpleDialog();
       print(e.toString());
     }
   }
@@ -275,6 +339,7 @@ class _LocationState extends State<Location> {
         finalValue = _currentAddress;
       });
     } catch (e) {
+      _getSimpleDialog();
       print(e);
     }
   }

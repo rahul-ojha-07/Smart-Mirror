@@ -10,6 +10,41 @@ class DatabaseService {
   final CollectionReference personCollection = 
       Firestore.instance.collection('persons');
 
+
+  final CollectionReference mirrorDataCollection = Firestore.instance.collection('users');
+
+
+  Future mirrorLoginOnUser(String uid) async{
+    var status = await mirrorDataCollection.getDocuments();
+    
+    for (var x in status.documents){
+      if (x.data == null || x.data['uid'] == " " ){
+        return await mirrorDataCollection.document("loggedUser").setData({
+      "uid": uid,
+      "userStatus": true,
+    });
+      }     
+    }
+    
+    
+  }
+
+  Future mirrorLogOutUser(String uid) async{
+    var status = await mirrorDataCollection.getDocuments();
+    
+    for (var x in status.documents){
+      if (x.data['uid'] == uid){
+        return await mirrorDataCollection.document("loggedUser").setData({
+      "uid": " ",
+      "userStatus": false,
+    });     
+      }
+    }
+    return null;
+  }
+
+  
+
   Future updateUserData(String uid,String email,String userName,var location, List toDoList,
       String newsPreference, bool mirrorStatus) async {
     return await personCollection.document(uid).setData({
