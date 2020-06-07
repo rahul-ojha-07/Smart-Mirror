@@ -17,10 +17,10 @@ class _NewsState extends State<News> {
   
     List<String> dropDownItems = [
     'Select...',
-    "International",
-    "Bollywood",
+    "Business",
+    "Health",
     "Sports",
-    "Fashion",
+    "Science",
     "Technology"
   ];
 
@@ -30,6 +30,7 @@ class _NewsState extends State<News> {
     widget.dbs.updateData().then((value) { 
       setState((){
         dropDownValue = value['newsPreference']??"Select...";
+        
       });
     });
   }
@@ -93,10 +94,10 @@ class _NewsState extends State<News> {
   String _getImageName(String newsType){
     var imageMap = {
        'Select...':'assets/images/news.ico',
-    "International":'assets/images/world.ico',
-    "Bollywood":'assets/images/movies.ico',
+    "Business":'assets/images/business.png',
+    "Health":'assets/images/health.png',
     "Sports":'assets/images/sports.ico',
-    "Fashion":'assets/images/fashion.ico',
+    "Science":'assets/images/science.png',
     "Technology":'assets/images/tech.ico'
     };
 

@@ -18,16 +18,16 @@ class _AddTODOState extends State<AddTODO> {
     List lst = widget.lst;
 
     return Scaffold(
-        backgroundColor: Color(0xffd3d3d3),
+        backgroundColor: Color(0xffFFFFFF),
         appBar: AppBar(
           title: Text(
-            "TO-DO",
+            "ADD TO-DO",
             style: TextStyle(
               color: Colors.white,
             ),
           ),
           centerTitle: true,
-          backgroundColor: Color(0xff212121),
+          backgroundColor: Color(0xff00BFA6),
         ),
         body: Center(
           child: Card(
@@ -48,7 +48,7 @@ class _AddTODOState extends State<AddTODO> {
                   SizedBox(
                     height: 20.0,
                   ),
-                  RaisedButton(
+                  FlatButton(
                       onPressed: () async {
                         widget.lst.add(newItem);
                         
@@ -58,8 +58,13 @@ class _AddTODOState extends State<AddTODO> {
                       },
                       child: Text(
                         "Add Task",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
                       ),
+                      color: Color(0xff00BFA6),
                     )
+                    
                 ],
               ),
             ),
@@ -85,16 +90,17 @@ class _EditTODOState extends State<EditTODO> {
   Widget build(BuildContext context) {
   final taskEdit = TextEditingController(text: widget.task);
     return Scaffold(
-        backgroundColor: Color(0xffd3d3d3),
+        backgroundColor: Color(0xffffffff),
         appBar: AppBar(
           title: Text(
             "TO-DO",
             style: TextStyle(
               color: Colors.white,
             ),
+            
           ),
           centerTitle: true,
-          backgroundColor: Color(0xff212121),
+          backgroundColor: Color(0xff00BFA6),
         ),
         body: Center(
           child: Card(
@@ -126,7 +132,11 @@ class _EditTODOState extends State<EditTODO> {
                       },
                       child: Text(
                         "Add Task",
+                        style: TextStyle(
+                          color:Colors.white
+                        ),
                       ),
+                      color: Color(0xff00BFA6),
                     )
                 ],
               ),
