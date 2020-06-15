@@ -2,7 +2,6 @@ import time
 import requests
 import json
 import traceback
-import feedparser
 from tkinter import *
 from PIL import Image, ImageTk
 import locale
