@@ -1,23 +1,8 @@
-# final-year-project
-This is the repository for our Final Year Project. 
+# Smart-Mirror
 
+A Mirror which is more than just than a Mirror. 😉
 
-## To Set name and email for commit 
-__$ git config --global user.name "Rahul Ojha"__<br/>
-__$ git config --global user.email "example@gmail.com"__
+## Description
 
-# Add, Commit and Push
-### Adding a file or Some changes to local git 
-* Adding 1 file
->   __$ git add FileName.ext__
-* Adding more files 
->   __$ git add fileName.ext fileName2.ext__
-* Add Everything
->   __$ git add .__
-
-### Commiting for gits (leaving a message after changing some Changes) 
->    __$ git commit -m "some message"__ 
-
-### Pushing the local git to GitHub
->   __git push origin edits__
+This is the repository is for our Final Year Project Which is about Smart Mirror, A mirror which shows Clock, Calander, News Reports and ToDo's of a Person. The Mirror is Controlled by a Andorid/IOS app which serves as the remote conbtrol for the Mirror. By using our app we can add/remove ToDos, Set News Preferences, Turn mirror on/off set location of the user and many more things in the future can be added.
 
