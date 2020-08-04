@@ -15,7 +15,7 @@ LOCALE_LOCK = threading.Lock()
 import random
 #Firebase setup
 
-cred = credentials.Certificate("smart-mirror-ce73a-firebase-adminsdk-rwemu-ca6ae7f273.json")
+cred = credentials.Certificate("YOUR FIREBASE CERTIFICATE.JSON FILE HERE")
 firebase_admin.initialize_app(cred)
 
 db = firestore.client()
@@ -23,10 +23,8 @@ users_ref = db.collection(u'users')
 docs = users_ref.stream()
 logged_user = ''
 for doc in docs:
-    # print(f'{doc.id} => {doc.to_dict()}')
     if doc.id == 'loggedUser':
       logged_user = doc.to_dict()
-      #print(logged_user)
 
 log_uid=logged_user['uid']
 person_ref = db.collection(u'persons')
@@ -36,7 +34,6 @@ res=''
 
 
 for doc in per_docs:
-#      #print(f'{doc.id} => {doc.to_dict()}')
       d_c=doc.to_dict()
       if d_c['uid'] == logged_user['uid']:
           res=doc.to_dict()
@@ -44,13 +41,12 @@ for doc in per_docs:
 print(res['email'])
 
 #weather
-weather_api_token = '24771cb0b5d76ac9e93c2e42d16dfab5'
+weather_api_token = 'WEATHER API TOKEN'
 weather_lang = 'en' 
 weather_unit = 'si' 
 latitude = None 
 longitude = None 
-#latitude=firebase.get('/persons/LT9onpu6tacLjBMqU2GWnCcyZuI2/position/lat', '') 
-#longitude=firebase.get('/persons/LT9onpu6tacLjBMqU2GWnCcyZuI2/position/long', '') 
+
 
 #textSize
 xlarge_text_size = 30
